@@ -1,0 +1,40 @@
+<div class="container mt-5">
+  <div class="card shadow p-4 mx-auto" style="max-width: 400px;">
+
+    <h3 class="text-center mb-3">Update Doctor</h3>
+
+    <input type="text"
+       [(ngModel)]="code"
+       class="form-control mb-2 text-center"
+       placeholder="Student Name"
+       disabled>
+
+    <input type="text"
+       [(ngModel)]="doctor.first_name"
+       class="form-control mb-2"
+       placeholder="First Name">
+    <input type="text"
+       [(ngModel)]="doctor.last_name"
+       class="form-control mb-2"
+       placeholder="Last Name">
+    <input type="number"
+       [(ngModel)]="doctor.age"
+       class="form-control mb-2"
+       placeholder="Age">
+    <input type="text"
+       [(ngModel)]="doctor.email"
+       class="form-control mb-2"
+       placeholder="Email">
+    <input type="text"
+       [(ngModel)]="doctor.phone"
+       class="form-control mb-2"
+       placeholder="Phone">
+    <input type="text"
+       [(ngModel)]="doctor.address"
+       class="form-control mb-2"
+       placeholder="Address">
+    
+    <button class="btn btn-primary w-100" (click)="UpdateDoctor()">Update Doctor</button>
+
+  </div>
+</div>

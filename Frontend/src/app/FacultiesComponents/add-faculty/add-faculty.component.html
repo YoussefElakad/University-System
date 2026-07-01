@@ -1,0 +1,19 @@
+<div class="container mt-5">
+  <div class="card shadow p-4 mx-auto" style="max-width: 400px;">
+
+    <h3 class="text-center mb-3">Add Faculty</h3>
+
+    <input type="text"
+       [(ngModel)]="faculty.facultyname"
+       class="form-control mb-2"
+       placeholder="Faculty Name">
+
+    <input type="number"
+       [(ngModel)]="faculty.numlevels"
+       class="form-control mb-3"
+       placeholder="Number of levels in the Faculty">
+
+    <button class="btn btn-primary w-100" (click)="addFaculty()">Add Faculty</button>
+
+  </div>
+</div>

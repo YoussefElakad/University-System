@@ -1,0 +1,53 @@
+<div class="container mt-5">
+  <div class="card shadow p-4 mx-auto" style="max-width: 400px;">
+
+    <h3 class="text-center mb-3">Update Course</h3>
+
+    <input type="number"
+       [(ngModel)]="id"
+       class="form-control mb-2 text-center"
+       placeholder="Faculty ID"
+       disabled>
+
+    <input type="text"
+       [(ngModel)]="course.coursename"
+       class="form-control mb-2"
+       placeholder="Faculty Name">
+
+    <select
+        [(ngModel)]="course.facultyname"
+        class="form-select mb-2"
+        name = "faculty">
+        <option value="" selected>Select Faculty</option>
+        <option *ngFor="let f of faculty"
+                [value]="f.facultyname">
+            {{f.facultyname}}
+        </option>
+    </select>
+
+    <select
+        [(ngModel)]="course.levelid"
+        class="form-select mb-2"
+        name = "faculty">
+        <option value="" selected>Select Level</option>
+        <option *ngFor="let l of levels"
+                [value]="l">
+            {{l}}
+        </option>
+    </select>
+
+    <select
+        [(ngModel)]="course.doctorid"
+        class="form-select mb-2"
+        name = "doctor">
+        <option *ngIf="course.doctorid == null" [value]="course.doctorid" selected>None</option>
+        <option *ngFor="let d of doctor"
+                [value]="d.doctorid">
+            {{d.first_name + " " + d.last_name}}
+        </option>
+    </select>
+
+    <button class="btn btn-primary w-100" (click)="UpdateCourse()">Update Course</button>
+
+  </div>
+</div>

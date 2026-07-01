@@ -1,0 +1,53 @@
+<div class="container mt-5">
+  <div class="card shadow p-4 mx-auto" style="max-width: 400px;">
+
+    <h3 class="text-center mb-3">Update Student</h3>
+
+    <input type="text"
+       [(ngModel)]="code"
+       class="form-control mb-2 text-center"
+       placeholder="Student Name"
+       disabled>
+
+    <input type="text"
+       [(ngModel)]="student.first_name"
+       class="form-control mb-2"
+       placeholder="First Name">
+    <input type="text"
+       [(ngModel)]="student.last_name"
+       class="form-control mb-2"
+       placeholder="Last Name">
+    <input type="number"
+       [(ngModel)]="student.age"
+       class="form-control mb-2"
+       placeholder="Age">
+    <input type="text"
+       [(ngModel)]="student.email"
+       class="form-control mb-2"
+       placeholder="Email">
+    <input type="text"
+       [(ngModel)]="student.phone"
+       class="form-control mb-2"
+       placeholder="Phone">
+    <input type="text"
+       [(ngModel)]="student.address"
+       class="form-control mb-2"
+       placeholder="Address">
+    
+    <select
+        [(ngModel)]="student.facultyname"
+        class="form-select mb-2">
+        <option *ngFor="let f of faculties"
+                [value]="f.facultyname">
+            {{ f.facultyname }}
+        </option>
+    </select>
+
+    <input type="number"
+       [(ngModel)]="student.levelid"
+       class="form-control mb-2"
+       placeholder="Level">
+
+    <button class="btn btn-primary w-100" (click)="UpdateStudent()">Update Student</button>
+
+  </div>

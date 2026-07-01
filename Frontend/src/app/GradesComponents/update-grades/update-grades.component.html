@@ -1,0 +1,26 @@
+<div class="container mt-5">
+  <div class="card shadow p-4 mx-auto" style="max-width: 400px;">
+
+    <h3 class="text-center mb-3">Update Grade</h3>
+
+    <input type="text"
+       [(ngModel)]="id"
+       class="form-control mb-2 text-center"
+       placeholder="Grade ID"
+       disabled>
+
+    <input type="text"
+       [(ngModel)]="grade.coursename"
+       class="form-control mb-2"
+       placeholder="Course Name"
+       disabled>
+
+    <input type="number"
+       [(ngModel)]="grade.grade"
+       class="form-control mb-2"
+       placeholder="Grade">
+
+    <button class="btn btn-primary w-100" (click)="UpdateGrade()">Update Grade</button>
+
+  </div>
+</div>

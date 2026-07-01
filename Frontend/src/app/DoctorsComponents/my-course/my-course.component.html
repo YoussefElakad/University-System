@@ -1,0 +1,87 @@
+<div class="page">
+
+  <h2 *ngIf="students.length != 0">{{course?.coursename}}</h2>
+  <h2 *ngIf="students.length === 0">No Students Registered This Course Yet</h2>
+
+
+  <div class="table-wrapper">
+
+    <table *ngIf="students.length != 0" class="table">
+
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Student Code</th>
+          <th>Student Name</th>
+          <th>Grade</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let s of paginatedStudents; let i = index">
+          <td>{{(currentPage - 1) * itemsPerPage + i + 1}}</td>
+          <td>{{s.student?.studentcode}}</td>
+          <td>{{s.student?.first_name + " " + s.student?.last_name}}</td>
+          <td>{{s.grade?.grade + " Out Of 100"}}</td>
+
+          <td>
+            <button class="btn btn-primary"
+                    [routerLink]="['/Grds/Update',s.grade?.gradeid]">
+            <i class="bi bi-pencil-square"></i>
+            </button>
+          </td>
+        </tr>   
+      </tbody>
+
+    </table>
+
+
+<!-- Loading Spinner -->
+  </div>
+
+      <div class="d-flex justify-content-center mt-3" *ngIf="loading">
+      <div class="text-center">
+      <div class="spinner-grow text-primary"></div>
+      <div class="text-muted mt-2">Fetching Data</div>
+  </div>
+</div>
+<!-- Loading Spinner -->
+
+</div>
+
+<!-- Pagination -->
+<nav *ngIf="students.length != 0" class="d-flex justify-content-center mt-3">
+  <ul class="pagination">
+
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <button class="page-link"
+              (click)="changePage(currentPage - 1)">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only"></span>
+      </button>
+    </li>
+
+    <li class="page-item"
+        *ngFor="let page of totalPages"
+        [class.active]="page === currentPage">
+
+      <button class="page-link"
+              (click)="changePage(page)">
+        {{ page }}
+      </button>
+
+    </li>
+
+    <li class="page-item"
+        [class.disabled]="currentPage === totalPages.length">
+      <button class="page-link"
+              (click)="changePage(currentPage + 1)">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only"></span>
+      </button>
+    </li>
+
+  </ul>
+</nav>
+<!-- Pagination -->

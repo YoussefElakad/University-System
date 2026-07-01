@@ -1,0 +1,41 @@
+.login-page {
+  min-height: calc(100vh - 130px); /* 70px header + 60px footer */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.login-card {
+  width: 360px;
+  max-width: 100%;
+  border-radius: 15px;
+  border: none;
+  background: white;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* Smooth entrance */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Input styling */
+.form-control {
+  border-radius: 10px;
+  padding: 10px;
+}
+
+/* Button styling */
+.btn-primary {
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: 600;
+}

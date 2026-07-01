@@ -1,0 +1,42 @@
+<div class="container mt-5">
+  <div class="card shadow p-4 mx-auto" style="max-width: 400px;">
+
+    <h3 class="text-center mb-3">Add Course</h3>
+
+    <input type="text"
+       [(ngModel)]="course.coursename"
+       class="form-control mb-2"
+       placeholder="Course Name">
+
+    <select
+        [(ngModel)]="course.facultyname"
+        class="form-select mb-2"
+        name = "faculty">
+        <option value="" disabled selected>Select Faculty</option>
+        <option *ngFor="let f of faculties"
+                [value]="f.facultyname">
+            {{ f.facultyname }}
+        </option>
+    </select>
+
+    <select
+        [(ngModel)]="course.doctorid"
+        class="form-select mb-2"
+        name = "doctor">
+        <option value="" disabled selected>Select Doctor</option>
+        <option [ngValue]="null">None Yet</option>
+        <option *ngFor="let d of doctors"
+                [ngValue]="d.doctorid">
+            {{ d.first_name + " " + d.last_name }}
+        </option>
+    </select>
+
+    <input type="number"
+       [(ngModel)]="course.levelid"
+       class="form-control mb-3"
+       placeholder="Student Level">
+
+    <button class="btn btn-primary w-100" (click)="addCourse()">Add Course</button>
+
+  </div>
+</div>

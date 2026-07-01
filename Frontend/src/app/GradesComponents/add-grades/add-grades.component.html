@@ -1,0 +1,63 @@
+<div class="container mt-5">
+
+  <div class="card shadow p-4 mx-auto" style="max-width: 400px;">
+
+    <h3 class="text-center mb-3">Add Grade</h3>
+
+    <form [formGroup]="gradeform" (ngSubmit)="onSubmit()">
+
+      <!-- Student -->
+      <div class="mb-3">
+        <label>Student</label>
+        <select class="form-control" formControlName="studentid"
+        (change)="onStudentChange()">
+
+          <option [disabled]="true" value="Select Student">Select Student</option>
+
+          <option *ngFor="let s of students" [value]="s.studentid">
+            {{ s.studentid }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Course -->
+      <div class="mb-3">
+        <label>Course</label>
+        <select 
+        class="form-control" 
+        formControlName="coursename">
+
+          <option [disabled]="true" value="Select Course">Select Course</option>
+
+          <option *ngFor="let c of coursesfilt">
+            {{ c }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Grade -->
+      <div class="mb-3">
+        <label>Grade</label>
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Enter Student Grade"
+          formControlName="grade"
+          [class.is-invalid] = "gradeform.get('grade')?.touched &&
+                                gradeform.get('grade')?.invalid">
+
+        <div class ="invalid-feedback">
+          please enter a grade between 0 and 100
+        </div>
+      </div>
+
+      <button
+        class="btn btn-primary w-100"
+        type="submit"
+        [disabled]="gradeform.invalid">
+        Save
+      </button>
+
+    </form>
+  </div>
+</div>

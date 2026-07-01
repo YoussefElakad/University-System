@@ -1,0 +1,41 @@
+.students-page {
+  text-align: center;
+  margin-top: 40px;
+  font-family: Arial, sans-serif;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.table-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.students-table {
+  width: 80%;
+  border-collapse: collapse;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: white;
+}
+
+.students-table thead {
+  background-color: #343a40;
+  color: white;
+}
+
+.students-table th,
+.students-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.students-table tbody tr:hover {
+  background-color: #f2f2f2;
+  transition: 0.2s;
+}

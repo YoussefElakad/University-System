@@ -1,0 +1,86 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+
+    <a class="navbar-brand"
+       routerLink="/Home"
+       routerLinkActive="active-link"
+       [routerLinkActiveOptions]="{exact:true}">
+      Home
+    </a>
+
+    <div class="d-flex gap-3">
+
+      <a *ngIf="role === 'ROLE_DOCTOR'"
+          class="nav-link"
+          routerLink="/Crs/register"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{exact: true}">
+          My Courses
+      </a>
+
+      <a *ngIf="role === 'ROLE_STUDENT'"
+          class="nav-link"
+          routerLink="/Crs/register"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{exact: true}">
+          Register Courses
+      </a>
+
+      <a *ngIf="role === 'ROLE_STUDENT'"
+          class="nav-link"
+          routerLink="/Grds/Stud"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{exact: true}">
+          My Grades
+      </a>
+
+      <a *ngIf="role === 'ROLE_ADMIN'"
+          class="nav-link"
+          routerLink="/Docs"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{exact: true}">
+          Doctors
+      </a>
+
+      <a *ngIf="role === 'ROLE_ADMIN'"
+          class="nav-link"
+          routerLink="/Studs"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{exact: true}">
+          Students
+      </a>
+
+      <a *ngIf="role === 'ROLE_ADMIN'"
+          class="nav-link"
+          routerLink="/Facs"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{exact: true}">
+          Faculties
+      </a>
+
+      <a *ngIf="role === 'ROLE_ADMIN'"
+          class="nav-link"
+          routerLink="/Crs"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{exact: true}">
+          Courses
+      </a>
+
+      <a *ngIf="role === 'ROLE_ADMIN'"
+          class="nav-link"
+          routerLink="/Grds"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{exact: true}">
+          Grades
+      </a>
+
+      <button *ngIf="role !== null"
+        class="nav-link"
+         (click)="logout()">
+        Log Out
+      </button>
+
+    </div>
+
+  </div>
+</nav>
