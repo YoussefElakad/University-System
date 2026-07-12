@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private translate: TranslateService) {
+    this.translate.setDefaultLang('en');
+    this.translate.use('en');
+    localStorage.setItem('lang','en');
+   }
 
   ngOnInit(): void {
   }
@@ -18,6 +23,18 @@ export class HomeComponent implements OnInit {
       return true;
     else
       return false;
+  }
+
+  SwitchEng()
+  {
+    this.translate.use('en');
+    localStorage.setItem('lang','en');
+  }
+
+  SwitchAr()
+  {
+    this.translate.use('ar');
+    localStorage.setItem('lang','ar');
   }
 
 }

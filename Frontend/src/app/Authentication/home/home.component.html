@@ -3,24 +3,31 @@
   <div class="hero-card">
 
     <div class="hero-content">
-      <span class="badge-custom">University Management System</span>
+      <span class="badge-custom">{{'HOME.BADGE' | translate}}</span>
 
-      <h1>University Database Portal</h1>
+      <h1>{{'HOME.TITLE'|translate}}</h1>
 
       <p>
-        Here you can access the database of our university, browse students,
-        faculties, courses, and manage academic information through a simple
-        and organized interface.
+        {{'HOME.DESCRIPTION' | translate}}
       </p>
     </div>
     
     <div *ngIf="!isLogged()" 
     class="button-group d-flex justify-content-center">
     <a routerLink="/auth/login" class="btn btn-outline-primary btn-lg">
-      Login
+      {{'HOME.LOGIN'|translate}}
     </a>
     <a routerLink="/auth/register" class="btn btn-outline-primary btn-lg">
-      Sign Up
+      {{'HOME.SIGNUP'|translate}}
+    </a>
+    </div>
+
+    <div class="button-group d-flex justify-content-center">
+    <a (click)="SwitchAr()" class="btn btn-outline-primary btn-lg">
+      {{'HOME.ARABIC'|translate}}
+    </a>
+    <a (click)="SwitchEng()" class="btn btn-outline-primary btn-lg">
+      {{'HOME.ENGLISH'|translate}}
     </a>
     </div>
 

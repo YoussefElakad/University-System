@@ -12,7 +12,7 @@ import { ModalComponent } from 'src/app/shared/components/modal/modal.component'
 export class StudentsComponent implements OnInit {
   
   currentPage: number = 0;
-  itemsPerPage: number = 6;
+  itemsPerPage: number = 5;
   totalpages: number = 0;
   pages: number[] = [];
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-footer',
@@ -7,17 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private translate: TranslateService) {
+    this.translate.use(localStorage.getItem('lang')!)
+   }
 
   ngOnInit(): void {
   }
 
   Show()
   {
+    
     if(localStorage.getItem('username') != null)
-      return "Logged In As User "+localStorage.getItem('username');
+      return this.translate.instant('FOOTER.LOGGED') +localStorage.getItem('username');
     else
-      return "Welcome To Your University"
+      return this.translate.instant('FOOTER.NOTLOGGED');
   }
 
 }

@@ -40,7 +40,7 @@ public class Control
     @GetMapping("/Studs")
     public Page<StudentDTO> getStudents(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "6") int size) {
+            @RequestParam(defaultValue = "5") int size) {
 
         return SS.ReturnStuds(page, size);
     }

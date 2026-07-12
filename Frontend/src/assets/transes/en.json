@@ -1,0 +1,20 @@
+{
+  "HOME": {
+    "BADGE": "University Management System",
+    "TITLE": "University Database Portal",
+    "DESCRIPTION": "Here you can access the database of our university, browse students, faculties, courses, and manage academic information through a simple and organized interface.",
+    "LOGIN": "Login",
+    "SIGNUP": "Sign Up",
+    "ARABIC": "Arabic",
+    "ENGLISH": "English"
+  },
+  "HEADER":{
+    "HOME": "Home"
+
+
+  },
+  "FOOTER":{
+    "LOGGED": "Logged in as User ",
+    "NOTLOGGED": "Welcome to Your University"
+  }
+}

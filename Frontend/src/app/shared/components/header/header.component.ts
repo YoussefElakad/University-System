@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   
-  constructor() { }
-
   role: string | null = null;
+  
+  constructor(private translate: TranslateService) {
+    translate.use(localStorage.getItem('lang')!);
+   }
+
   ngOnInit(): void {
     this.role = localStorage.getItem('role');
   }
