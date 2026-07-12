@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Grades } from 'src/app/shared/models/Grades/Grades.model';
-import { Student } from 'src/app/shared/models/Student/Student.model';
 import { ApiService } from 'src/app/shared/service/ServiceUni/api.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -13,7 +12,6 @@ import { ToastrService } from 'ngx-toastr';
 export class AddGradesComponent implements OnInit {
 
   gradeform!: FormGroup;
-  students! : Student[];
   grades! : Grades[];
   coursesfilt: string[] = [];
 
@@ -26,12 +24,6 @@ export class AddGradesComponent implements OnInit {
 
   GetSelections()
   {
-    this.api.getStuds()
-    .subscribe( data =>
-    {
-      this.students = data;
-    }
-    )
 
     this.api.getGrd()
     .subscribe( data =>

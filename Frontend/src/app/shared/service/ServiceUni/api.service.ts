@@ -14,6 +14,7 @@ import { Doctor } from '../../models/Doctor/Doctor.model';
 import { DoctorRequest } from '../../models/Doctor/DoctorRequest.model';
 import { CourseGrade } from '../../models/Grades/CourseGrade.model';
 import { StudentGrade } from '../../models/Grades/StudentGrade.model';
+import { Page } from '../../models/Page.model';
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +36,10 @@ export class ApiService {
   // Authentication-------------------------------------------------
 
   // Students-------------------------------------------------
-  getStuds(){
-    return this.http.get<Student[]>(this.baseUrl + "/Studs");
+  getStuds(page: number, size: number) {
+    return this.http.get<Page<Student>>(
+      `${this.baseUrl}/Studs?page=${page}&size=${size}`
+    );
   }
 
   FetchStudUser(username: string) {

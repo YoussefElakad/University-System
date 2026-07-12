@@ -1,22 +1,18 @@
 package com.revkov.spring.Students;
 
-import com.revkov.spring.Courses.Course;
-import com.revkov.spring.Courses.CourseRep;
-import com.revkov.spring.Doctors.StudentGradeDTO;
 import com.revkov.spring.Doctors.StudentMapper;
 import com.revkov.spring.Faculties.Faculty;
 import com.revkov.spring.Faculties.FacultyRep;
 import com.revkov.spring.Faculties.Level;
 import com.revkov.spring.Faculties.LevelRep;
-import com.revkov.spring.Grades.Grades;
-import com.revkov.spring.Grades.GradesMapper;
-import com.revkov.spring.Grades.GradesRep;
 import com.revkov.spring.Users.UsersRep;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
+
 
 @org.springframework.stereotype.Service
 @AllArgsConstructor
@@ -26,10 +22,7 @@ public class StudentServ
     private final FacultyRep repf;
     private final LevelRep repl;
     private final UsersRep repu;
-    private final CourseRep repc;
-    private final GradesRep repg;
     private final StudentMapper mapper;
-    private final GradesMapper mapperg;
     private String generatecode()
     {
         return "STU-" +
@@ -39,12 +32,16 @@ public class StudentServ
 
     }
 
-    public List<StudentDTO> ReturnStuds()
-    {
-        return reps.findAll(Sort.by("studentid"))
-                .stream()
-                .map(mapper::toDTO)
-                .collect(Collectors.toList());
+    public Page<StudentDTO> ReturnStuds(int page, int size) {
+
+        Pageable pageable = PageRequest.of(
+                page,
+                size,
+                Sort.by("studentid")
+        );
+
+        return reps.findAll(pageable)
+                .map(mapper::toDTO);
     }
 
     public StudentDTO ReturnStudID(Long id) {

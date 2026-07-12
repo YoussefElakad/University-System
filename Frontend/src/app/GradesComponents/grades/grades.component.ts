@@ -16,6 +16,7 @@ export class GradesComponent implements OnInit {
 
   currentPage: number = 1;
   itemsPerPage: number = 6;
+  totalpages: number = 0;
 
   studentNameFilter: string = '';
   facultyFilter: string = 'All Faculties';
@@ -62,8 +63,9 @@ export class GradesComponent implements OnInit {
     });
 
 
-    this.api.getStuds().subscribe(data => {
-    this.students = data;
+    this.api.getStuds(this.currentPage, this.itemsPerPage).subscribe(data => {
+      this.students = data.content;
+      this.totalpages = data.totalPages;
     });
 
     this.api.getCrs().subscribe(data => {

@@ -20,6 +20,7 @@ import com.revkov.spring.Doctors.StudentGradeDTO;
 import com.revkov.spring.Students.StudentRequestDTO;
 import com.revkov.spring.Students.StudentServ;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
@@ -37,9 +38,11 @@ public class Control
 
     //Students -----------------------------------------------------------
     @GetMapping("/Studs")
-    public List<StudentDTO> Showstuds()
-    {
-        return SS.ReturnStuds();
+    public Page<StudentDTO> getStudents(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "6") int size) {
+
+        return SS.ReturnStuds(page, size);
     }
 
     @GetMapping("/Studs/{id}")

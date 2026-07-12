@@ -9,15 +9,11 @@
       <!-- Student -->
       <div class="mb-3">
         <label>Student</label>
-        <select class="form-control" formControlName="studentid"
-        (change)="onStudentChange()">
-
-          <option [disabled]="true" value="Select Student">Select Student</option>
-
-          <option *ngFor="let s of students" [value]="s.studentid">
-            {{ s.studentid }}
-          </option>
-        </select>
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Enter Student Grade"
+          formControlName="grade">
       </div>
 
       <!-- Course -->

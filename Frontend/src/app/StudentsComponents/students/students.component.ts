@@ -11,8 +11,11 @@ import { ModalComponent } from 'src/app/shared/components/modal/modal.component'
 })
 export class StudentsComponent implements OnInit {
   
-  currentPage: number = 1;
+  currentPage: number = 0;
   itemsPerPage: number = 6;
+  totalpages: number = 0;
+  pages: number[] = [];
+
   facultyFilter: string = '';
   studentNameFilter: string = '';
   selectedId!:number;
@@ -36,10 +39,17 @@ export class StudentsComponent implements OnInit {
 
   GetData()
   {
-      this.api.getStuds().subscribe(data => {
-      this.students = data;
+    this.api.getStuds(this.currentPage, this.itemsPerPage)
+    .subscribe(data => {
+      this.students = data.content;
+      this.totalpages = data.totalPages;
+
+      this.pages = Array.from(
+        { length: this.totalpages },
+        (_, i) => i
+      );
       this.loading = false;
-  });
+    });
 
     this.api.getFacs().subscribe(data => {
     this.faculties = data;
@@ -79,20 +89,11 @@ export class StudentsComponent implements OnInit {
   });
 }
 
-get paginatedStudents() {
-  const start = (this.currentPage - 1) * this.itemsPerPage;
-  const end = start + this.itemsPerPage;
-  return this.filteredStudents.slice(start, end);
-}
-
-get totalPages(): number[] {
-  return Array(Math.ceil(this.filteredStudents.length / this.itemsPerPage))
-    .fill(0)
-    .map((x, i) => i + 1);
-}
-
 changePage(page: number) {
-  this.currentPage = page;
+  if (page >= 0 && page < this.totalpages) {
+    this.currentPage = page;
+    this.GetData();
+  }
 }
 //----------------------------------------------
 
