@@ -9,9 +9,12 @@ import { TranslateService } from '@ngx-translate/core';
 export class HomeComponent implements OnInit {
 
   constructor(private translate: TranslateService) {
-    this.translate.setDefaultLang('en');
-    this.translate.use('en');
-    localStorage.setItem('lang','en');
+    if(localStorage.getItem('lang') === null)
+    {
+      this.translate.setDefaultLang('en');
+      this.translate.use('en');
+      localStorage.setItem('lang','en');
+    }
    }
 
   ngOnInit(): void {

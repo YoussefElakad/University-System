@@ -69,8 +69,10 @@ export class ApiService {
   // Students-------------------------------------------------
 
   // Doctors-------------------------------------------------
-  getDocs(){
-    return this.http.get<Doctor[]>(this.baseUrl + "/Docs");
+  getDocs(page: number,size: number){
+    return this.http.get<Page<Doctor>>(
+      `${this.baseUrl}/Docs?page=${page}&size=${size}`
+    );
   }
 
   FetchDocUser(username: string) {
@@ -123,8 +125,10 @@ export class ApiService {
   // Faculties-------------------------------------------------
 
   // Courses-------------------------------------------------
-  getCrs(){
-    return this.http.get<Course[]>(this.baseUrl + "/Crs")
+  getCrs(page: number,size: number){
+    return this.http.get<Page<Course>>(
+      `${this.baseUrl}/Crs?page=${page}&size=${size}`
+    );
   }
 
   FetchCrs(id : number){
@@ -154,8 +158,10 @@ export class ApiService {
   // Courses-------------------------------------------------
 
   // Grades-------------------------------------------------
-  getGrd(){
-    return this.http.get<Grades[]>(this.baseUrl + "/Grds")
+  getGrd(page: number,size: number){
+    return this.http.get<Page<Grades>>(
+      `${this.baseUrl}/Grds?page=${page}&size=${size}`
+    );
   }
 
   FetchGrd(id : number){

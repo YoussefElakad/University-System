@@ -3,6 +3,9 @@ package com.revkov.spring.Doctors;
 import com.revkov.spring.Students.StudentDTO;
 import com.revkov.spring.Users.UsersRep;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
@@ -26,12 +29,16 @@ public class DoctorServ
     }
 
 
-    public List<DoctorDTO> ReturnDocs()
+    public Page<DoctorDTO> ReturnDocs(int page, int size)
     {
-        return repd.findAll(Sort.by("doctorid"))
-                .stream()
-                .map(mapper::toDTO)
-                .collect(Collectors.toList());
+        Pageable pageable = PageRequest.of(
+                page,
+                size,
+                Sort.by("doctorid")
+        );
+
+        return repd.findAll(pageable)
+                .map(mapper::toDTO);
     }
     public DoctorDTO ReturnDocID(Long id) {
         return repd.findById(id).map(mapper::toDTO).orElse(null);

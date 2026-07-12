@@ -73,8 +73,8 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let c of paginatedCourses; let i = index">
-          <td>{{(currentPage - 1) * itemsPerPage + i + 1}}</td>
+        <tr *ngFor="let c of filteredCourses; let i = index">
+          <td>{{currentPage * itemsPerPage + i + 1}}</td>
           <td>{{ c.courseid }}</td>
           <td>{{ c.coursename }}</td>
           <td>{{ c.level?.levelid }}</td>
@@ -122,32 +122,38 @@
 <nav class="d-flex justify-content-center mt-3">
   <ul class="pagination">
 
-    <li class="page-item" [class.disabled]="currentPage === 1">
+    <!-- Previous -->
+    <li class="page-item"
+        [class.disabled]="currentPage === 0">
+
       <button class="page-link"
               (click)="changePage(currentPage - 1)">
-        <span aria-hidden="true">&laquo;</span>
-        <span class="sr-only"></span>
+        &laquo;
       </button>
+
     </li>
 
+    <!-- Page Numbers -->
     <li class="page-item"
-        *ngFor="let page of totalPages"
+        *ngFor="let page of pages"
         [class.active]="page === currentPage">
 
       <button class="page-link"
               (click)="changePage(page)">
-        {{ page }}
+        {{ page + 1 }}
       </button>
 
     </li>
 
+    <!-- Next -->
     <li class="page-item"
-        [class.disabled]="currentPage === totalPages.length">
+        [class.disabled]="currentPage === totalpages - 1">
+
       <button class="page-link"
               (click)="changePage(currentPage + 1)">
-        <span aria-hidden="true">&raquo;</span>
-        <span class="sr-only"></span>
+        &raquo;
       </button>
+
     </li>
 
   </ul>

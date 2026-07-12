@@ -44,8 +44,8 @@ export class UpdateCourseComponent implements OnInit {
       this.faculty = data;
     });
 
-    this.service.getDocs().subscribe(data => {
-      this.doctor = data;
+    this.service.getDocs(0,10000).subscribe(data => {
+      this.doctor = data.content;
     });
   }
 

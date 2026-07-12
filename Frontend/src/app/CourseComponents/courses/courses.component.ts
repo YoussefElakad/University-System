@@ -19,8 +19,12 @@ export class CoursesComponent implements OnInit {
   loading = true;
   faculties : Faculty[] = [];
   selectedId!:number;
-  currentPage: number = 1;
-  itemsPerPage: number = 6;
+  
+  currentPage: number = 0;
+  itemsPerPage: number = 5;
+  totalpages: number = 0;
+  pages: number[] = [];
+
   facultyFilter: string = '';
   courseNameFilter: string = '';
 
@@ -28,17 +32,28 @@ export class CoursesComponent implements OnInit {
   modal! : ModalComponent;
 
   ngOnInit(): void {
-    this.api.getCrs().subscribe(data => {
-      this.courses = data;
+    this.GetData();
+  }
+  //----------------------------------------------
+
+  GetData()
+  {
+    this.api.getCrs(this.currentPage, this.itemsPerPage)
+    .subscribe(data => {
+      this.courses = data.content;
+      this.totalpages = data.totalPages;
+
+      this.pages = Array.from(
+        { length: this.totalpages },
+        (_, i) => i
+      );
       this.loading = false;
-  });
+    });
 
     this.api.getFacs().subscribe(data => {
     this.faculties = data;
     });
   }
-  //----------------------------------------------
-
   //----------------------------------------------
   //Delete Function With Modal
 
@@ -74,12 +89,6 @@ export class CoursesComponent implements OnInit {
   });
 }
 
-get paginatedCourses() {
-  const start = (this.currentPage - 1) * this.itemsPerPage;
-  const end = start + this.itemsPerPage;
-  return this.filteredCourses.slice(start, end);
-}
-
 get totalPages(): number[] {
   return Array(Math.ceil(this.filteredCourses.length / this.itemsPerPage))
     .fill(0)
@@ -87,7 +96,10 @@ get totalPages(): number[] {
 }
 
 changePage(page: number) {
-  this.currentPage = page;
+  if (page >= 0 && page < this.totalpages) {
+    this.currentPage = page;
+    this.GetData();
+  }
 }
 //----------------------------------------------
 

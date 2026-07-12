@@ -14,9 +14,10 @@ import { ApiService } from 'src/app/shared/service/ServiceUni/api.service';
 })
 export class GradesComponent implements OnInit {
 
-  currentPage: number = 1;
-  itemsPerPage: number = 6;
+  currentPage: number = 0;
+  itemsPerPage: number = 5;
   totalpages: number = 0;
+  pages: number[] = [];
 
   studentNameFilter: string = '';
   facultyFilter: string = 'All Faculties';
@@ -53,9 +54,16 @@ export class GradesComponent implements OnInit {
 
   FetchingData()
   {
-    this.api.getGrd().subscribe(data => {
-    this.grade = data;
-    this.loading = false;
+    this.api.getGrd(this.currentPage, this.itemsPerPage)
+    .subscribe(data => {
+      this.grade = data.content;
+      this.totalpages = data.totalPages;
+
+      this.pages = Array.from(
+        { length: this.totalpages },
+        (_, i) => i
+      );
+      this.loading = false;
     });
 
     this.api.getFacs().subscribe(data => {
@@ -63,13 +71,12 @@ export class GradesComponent implements OnInit {
     });
 
 
-    this.api.getStuds(this.currentPage, this.itemsPerPage).subscribe(data => {
+    this.api.getStuds(0, 10000).subscribe(data => {
       this.students = data.content;
-      this.totalpages = data.totalPages;
     });
 
-    this.api.getCrs().subscribe(data => {
-    this.courses = data;
+    this.api.getCrs(0, 10000).subscribe(data => {
+      this.courses = data.content;
     });
   }
 
@@ -153,12 +160,6 @@ export class GradesComponent implements OnInit {
   });
 }
 
-get paginatedGrades() {
-  const start = (this.currentPage - 1) * this.itemsPerPage;
-  const end = start + this.itemsPerPage;
-  return this.filteredGrades.slice(start, end);
-}
-
 get totalPages(): number[] {
   return Array(Math.ceil(this.filteredGrades.length / this.itemsPerPage))
     .fill(0)
@@ -166,7 +167,10 @@ get totalPages(): number[] {
 }
 
 changePage(page: number) {
-  this.currentPage = page;
+  if (page >= 0 && page < this.totalpages) {
+    this.currentPage = page;
+    this.FetchingData();
+  }
 }
 //----------------------------------------------
 

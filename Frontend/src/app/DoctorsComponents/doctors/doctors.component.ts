@@ -10,8 +10,11 @@ import { ApiService } from 'src/app/shared/service/ServiceUni/api.service';
 })
 export class DoctorsComponent implements OnInit {
 
-  currentPage: number = 1;
-  itemsPerPage: number = 6;
+  currentPage: number = 0;
+  itemsPerPage: number = 5;
+  totalpages: number = 0;
+  pages: number[] = [];
+
   facultyFilter: string = '';
   doctorfilter: string = '';
   selectedId!:number;
@@ -34,9 +37,16 @@ export class DoctorsComponent implements OnInit {
 
   getData()
   {
-    this.api.getDocs().subscribe(data => {
-    this.doctors = data;
-    this.loading = false;
+    this.api.getDocs(this.currentPage, this.itemsPerPage)
+    .subscribe(data => {
+      this.doctors = data.content;
+      this.totalpages = data.totalPages;
+
+      this.pages = Array.from(
+        { length: this.totalpages },
+        (_, i) => i
+      );
+      this.loading = false;
     });
   }
   //----------------------------------------------
@@ -69,12 +79,6 @@ export class DoctorsComponent implements OnInit {
   });
 }
 
-get paginatedDocs() {
-  const start = (this.currentPage - 1) * this.itemsPerPage;
-  const end = start + this.itemsPerPage;
-  return this.filteredDoctors.slice(start, end);
-}
-
 get totalPages(): number[] {
   return Array(Math.ceil(this.filteredDoctors.length / this.itemsPerPage))
     .fill(0)
@@ -82,7 +86,10 @@ get totalPages(): number[] {
 }
 
 changePage(page: number) {
-  this.currentPage = page;
+  if (page >= 0 && page < this.totalpages) {
+    this.currentPage = page;
+    this.getData();
+  }
 }
 //----------------------------------------------
 }

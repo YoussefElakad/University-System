@@ -9,6 +9,9 @@ import com.revkov.spring.Students.CourseGradeDTO;
 import com.revkov.spring.Students.Student;
 import com.revkov.spring.Students.StudentRep;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,12 +27,16 @@ public class GradesServ
     private final StudentMapper mappers;
     private final CourseMapper mapperc;
 
-    public List<GradesDTO> ReturnGrds()
+    public Page<GradesDTO> ReturnGrds(int page,int size)
     {
-        return repg.findAll(Sort.by("gradeid"))
-                .stream()
-                .map(mapper::toDTO)
-                .collect(Collectors.toList());
+        Pageable pageable = PageRequest.of(
+                page,
+                size,
+                Sort.by("gradeid")
+        );
+
+        return repg.findAll(pageable)
+                .map(mapper::toDTO);
     }
 
     public GradesDTO ReturnGrdID(Long id) {
@@ -63,6 +70,9 @@ public class GradesServ
     {
         Student s = reps.findById(dto.getStudentid()).orElseThrow(() -> new RuntimeException("Student Does not Exist"));
         Course c = repc.findByCoursename(dto.getCoursename()).orElseThrow(()-> new RuntimeException("Course Does Not Exist"));
+
+        if(dto.getGrade() > 100 || dto.getGrade() < 0)
+            throw new RuntimeException("Grade Must be Between 0 and 100");
         Grades g = new Grades(id, s, c,dto.getGrade());
 
         repg.save(g);

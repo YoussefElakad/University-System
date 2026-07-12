@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Grades } from 'src/app/shared/models/Grades/Grades.model';
 import { ApiService } from 'src/app/shared/service/ServiceUni/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { Student } from 'src/app/shared/models/Student/Student.model';
 
 @Component({
   selector: 'app-add-grades',
@@ -13,6 +14,7 @@ export class AddGradesComponent implements OnInit {
 
   gradeform!: FormGroup;
   grades! : Grades[];
+  students!: Student[];
   coursesfilt: string[] = [];
 
   constructor(private FB : FormBuilder,private api : ApiService,private toaster: ToastrService) { }
@@ -25,12 +27,19 @@ export class AddGradesComponent implements OnInit {
   GetSelections()
   {
 
-    this.api.getGrd()
+    this.api.getGrd(0,10000)
     .subscribe( data =>
     {
-      this.grades = data
+      this.grades = data.content
     }
-    )
+    );
+
+    this.api.getStuds(0,10000)
+    .subscribe( data =>
+    {
+      this.students = data.content
+    }
+    );
   }
 
   FormBuilding()
@@ -53,14 +62,13 @@ export class AddGradesComponent implements OnInit {
     if(this.gradeform.get('studentid')?.value === 'Select Student')
     {
       this.gradeform.get('coursename')?.disable();
-      console.log('supposed disabled')
     }
     else
     {
       this.gradeform.get('coursename')?.enable();
 
       this.coursesfilt = this.grades.filter(g =>
-        g.student?.studentid === this.gradeform.get('studentid')?.value
+        g.student?.studentid == this.gradeform.get('studentid')?.value
       ).map(g=>g.course?.coursename ?? 'Select Course');  
     }
   }
@@ -77,5 +85,4 @@ export class AddGradesComponent implements OnInit {
       }
     });
   }
-
 }

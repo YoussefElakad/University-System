@@ -13,6 +13,9 @@ import com.revkov.spring.Users.Role;
 import com.revkov.spring.Users.Users;
 import com.revkov.spring.Users.UsersRep;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,12 +33,16 @@ public class CourseServ
     private final GradesRep repg;
     private final CourseMapper mapper;
 
-    public List<CourseDTO> ReturnCrs()
+    public Page<CourseDTO> ReturnCrs(int page, int size)
     {
-        return repc.findAll(Sort.by("courseid"))
-                .stream()
-                .map(mapper::toDTO)
-                .collect(Collectors.toList());
+        Pageable pageable = PageRequest.of(
+                page,
+                size,
+                Sort.by("courseid")
+        );
+
+        return repc.findAll(pageable)
+                .map(mapper::toDTO);
     }
 
     public CourseDTO ReturnCrsID(Long id) {

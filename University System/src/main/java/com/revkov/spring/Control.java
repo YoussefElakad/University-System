@@ -109,9 +109,9 @@ public class Control
 
     //Courses -----------------------------------------------------------
     @GetMapping("/Crs")
-    public List<CourseDTO> Showcrs()
+    public Page<CourseDTO> Showcrs(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size)
     {
-        return CS.ReturnCrs();
+        return CS.ReturnCrs(page,size);
     }
 
     @GetMapping("/Crs/{id}")
@@ -147,9 +147,9 @@ public class Control
 
     //Grades -----------------------------------------------------------
     @GetMapping("/Grds")
-    public List<GradesDTO> ShowGrds()
+    public Page<GradesDTO> ShowGrds(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size)
     {
-        return GS.ReturnGrds();
+        return GS.ReturnGrds(page,size);
     }
 
     @GetMapping("/Grds/{id}")
@@ -191,9 +191,9 @@ public class Control
 
     //Doctors -----------------------------------------------------------
     @GetMapping("/Docs")
-    public List<DoctorDTO> Showdocs()
+    public Page<DoctorDTO> Showdocs(@RequestParam(defaultValue = "0") int page,@RequestParam(defaultValue = "5") int size)
     {
-        return DS.ReturnDocs();
+        return DS.ReturnDocs(page,size);
     }
 
     @GetMapping("/Docs/{id}")

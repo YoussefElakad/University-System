@@ -61,7 +61,9 @@ const routes: Routes = [
     //Grades
   { path: 'Grds', component: GradesComponent, canActivate : [AuthGuard],data: {role: 'ROLE_ADMIN'}},
   { path: 'Grds/Add', component: AddGradesComponent, canActivate : [AuthGuard],data: {role: 'ROLE_ADMIN'}},
-  { path: 'Grds/Update/:id', component: UpdateGradesComponent, canActivate : [AuthGuard],data: {role: ['ROLE_ADMIN','ROLE_DOCTOR']}}
+  { path: 'Grds/Update/:id', component: UpdateGradesComponent, canActivate : [AuthGuard],data: {role: ['ROLE_ADMIN','ROLE_DOCTOR']}},
+
+    {path: '**', redirectTo: 'Home'}
 ];
 
 @NgModule({

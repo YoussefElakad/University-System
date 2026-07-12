@@ -34,8 +34,8 @@ export class AddCourseComponent implements OnInit {
     this.faculties = data;
     });
 
-    this.service.getDocs().subscribe(data => {
-    this.doctors = data;
+    this.service.getDocs(0,10000).subscribe(data => {
+    this.doctors = data.content;
     });
   }
 
