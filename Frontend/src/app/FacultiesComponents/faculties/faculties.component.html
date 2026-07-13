@@ -1,6 +1,6 @@
 <div class="page">
 
-  <h2 class="title">Faculties</h2>
+  <h2 class="title">{{'FACULTY.TITLE'|translate}}</h2>
 
   <!-- ------------------------------------ -->
 <!-- Filter + Add -->
@@ -11,7 +11,7 @@
     <input
       type="text"
       class="form-control student-search"
-      placeholder="Search by faculty name..."
+      [placeholder]="'FACULTY.SRCH'|translate"
       [(ngModel)]="facultyFilter"
       (ngModelChange)="currentPage = 1">
   </div>
@@ -23,7 +23,6 @@
   <div style="width: 50px;">
     <button
       class="btn btn-outline-success btn-sm"
-      placeholder="Search by student name..."
       routerLink="/Facs/Add">
       <i class="bi bi-plus"></i>
     </button>
@@ -43,10 +42,10 @@
       <thead class="table-dark">
         <tr>
           <th>#</th>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Number Of Levels</th>
-          <th>Action</th>
+          <th>{{'TABLE.CODE'|translate}}</th>
+          <th>{{'TABLE.NAME'|translate}}</th>
+          <th>{{'FACULTY.NUMLEVS'|translate}}</th>
+          <th>{{'TABLE.ACTION'|translate}}</th>
         </tr>
       </thead>
 

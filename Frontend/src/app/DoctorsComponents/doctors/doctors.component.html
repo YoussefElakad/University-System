@@ -1,6 +1,6 @@
 <div class="page">
 
-  <h2 class="title">Doctors</h2>
+  <h2 class="title">{{'DOCTOR.TITLE'|translate}}</h2>
 
   <!-- ------------------------------------ -->
 <!-- Filters + Add Button-->
@@ -11,7 +11,7 @@
     <input
       type="text"
       class="form-control student-search"
-      placeholder="Search by doctor name..."
+      [placeholder]="'DOCTOR.SRCH'|translate"
       [(ngModel)]="doctorfilter"
       (ngModelChange)="currentPage = 1">
   </div>
@@ -43,9 +43,9 @@
       <thead class="table-dark">
         <tr>
           <th>#</th>
-          <th>Code</th>
-          <th>Name</th>
-          <th>Action</th>
+          <th>{{'TABLE.CODE'|translate}}</th>
+          <th>{{'TABLE.NAME'|translate}}</th>
+          <th>{{'TABLE.ACTION'|translate}}</th>
         </tr>
       </thead>
 
@@ -82,7 +82,7 @@
       <div class="d-flex justify-content-center mt-3" *ngIf="loading">
       <div class="text-center">
       <div class="spinner-grow text-primary"></div>
-      <div class="text-muted mt-2">Fetching Data</div>
+      <div class="text-muted mt-2">{{'MODAL.FTCH'|translate}}</div>
   </div>
 </div>
 <!-- Loading Spinner -->

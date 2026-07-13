@@ -26,7 +26,8 @@
   },
   "MODAL":{
     "CONF": "CONFIRM",
-    "CLS": "CLOSE"
+    "CLS": "CLOSE",
+    "FTCH": "Fetching Data"
   },
   "LOGIN":{
     "WELCOME": "Welcome Back",
@@ -62,5 +63,26 @@
     "CONPASSBOX": "Enter Password Again",
     "CONCHCK": "Passwords must match.",
     "SUBMIT": "Submit"
+  },
+  "TABLE":{
+    "NAME": "Name",
+    "ACTION": "Action",
+    "CODE": "Code"
+  },
+  "DOCTOR":{
+    "TITLE": "Doctors",
+    "SRCH": "Search By Doctor Name"
+  },
+  "STUDENT":{
+    "TITLE": "Students",
+    "SRCH1": "Search By Student Name",
+    "SRCH2": "All Faculties",
+    "FAC": "Faculty Name",
+    "LEV": "Level"
+  },
+  "FACULTY":{
+    "TITLE": "Faculty",
+    "NUMLEVS": "Number Of Levels",
+    "SRCH": "Search By Faculty Name"
   }
 }

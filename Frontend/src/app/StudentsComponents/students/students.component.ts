@@ -3,6 +3,7 @@ import { ApiService } from '../../shared/service/ServiceUni/api.service';
 import { Student } from '../../shared/models/Student/Student.model';
 import { Faculty } from '../../shared/models/Faculty/Faculty.model';
 import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-students',
@@ -28,7 +29,9 @@ export class StudentsComponent implements OnInit {
   modal!: ModalComponent;
 
 
-  constructor(private api:ApiService) { }
+  constructor(private api:ApiService,private translate: TranslateService) {
+    translate.use(localStorage.getItem('lang')!);
+   }
 
   //----------------------------------------------
   //Getting Data

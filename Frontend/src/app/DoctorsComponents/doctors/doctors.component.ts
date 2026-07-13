@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
 import { Doctor } from 'src/app/shared/models/Doctor/Doctor.model';
 import { ApiService } from 'src/app/shared/service/ServiceUni/api.service';
@@ -26,7 +27,9 @@ export class DoctorsComponent implements OnInit {
   modal!: ModalComponent;
 
 
-  constructor(private api:ApiService) { }
+  constructor(private api:ApiService,private translate: TranslateService) {
+    translate.use(localStorage.getItem('lang')!);
+   }
 
   //----------------------------------------------
   //Getting Data

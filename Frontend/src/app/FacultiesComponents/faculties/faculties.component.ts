@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../../shared/service/ServiceUni/api.service';
 import { Faculty } from '../../shared/models/Faculty/Faculty.model';
 import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-faculties',
@@ -24,7 +25,9 @@ export class FacultiesComponent implements OnInit {
   modal!: ModalComponent;
 
 
- constructor(private api:ApiService) { }
+ constructor(private api:ApiService,private translate: TranslateService) {
+  translate.use(localStorage.getItem('lang')!);
+  }
   ngOnInit(): void {
    this.getFaculties();
   }

@@ -4,11 +4,12 @@
 
     <h3 class="text-center mb-4">{{'SIGNUP.WELCOME'|translate}}</h3>
 
-    <form (ngSubmit)="Register()">
+    <form #signform="ngForm" (ngSubmit)="Register()">
 
       <div class="mb-3">
         <select
         [(ngModel)]="register.role"
+        required
         class="form-select mb-2"
         name = "role">
         <option value="" disabled selected>{{'SIGNUP.ROLE'|translate}}</option>
@@ -29,6 +30,7 @@
           [(ngModel)]="register.code"
           name="name"
           class="form-control"
+          required
           [placeholder]="'SIGNUP.CODEBOX'|translate"
         />
       </div>
@@ -41,6 +43,7 @@
           [(ngModel)]="register.first_name"
           name="name"
           class="form-control"
+          required
           [placeholder]="'SIGNUP.FNAMEBOX'|translate"
         />
       </div>
@@ -52,6 +55,7 @@
           [(ngModel)]="register.last_name"
           name="name"
           class="form-control"
+          required
           [placeholder]="'SIGNUP.LNAMEBOX'|translate"
         />
       </div>
@@ -63,6 +67,7 @@
           [(ngModel)]="register.age"
           name="name"
           class="form-control"
+          required
           [placeholder]="'SIGNUP.AGEBOX'|translate"
         />
       </div>
@@ -74,6 +79,7 @@
           [(ngModel)]="register.email"
           name="name"
           class="form-control"
+          required
           [placeholder]="'SIGNUP.EMBOX'|translate"
         />
       </div>
@@ -85,6 +91,7 @@
           [(ngModel)]="register.address"
           name="name"
           class="form-control"
+          required
           [placeholder]="'SIGNUP.ADDRBOX'|translate"
         />
       </div>
@@ -96,6 +103,7 @@
           [(ngModel)]="register.username"
           name="username"
           class="form-control"
+          required
           [placeholder]="'SIGNUP.USERBOX'|translate"
         />
       </div>
@@ -107,6 +115,7 @@
           [(ngModel)]="register.password"
           name="password"
           class="form-control"
+          required
           [placeholder]="'SIGNUP.PASSWORDBOX'|translate"
         />
         <small
@@ -122,17 +131,18 @@
           [(ngModel)]="confirmPassword"
           name="password"
           class="form-control"
+          required
           [placeholder]="'SIGNUP.CONPASSBOX'|translate"
         />
         <small
         class="text-danger"
         *ngIf="confirmPassword && confirmPassword !== register.password">
-        {{'SIGNUP.CONPASSCHCK'|translate}}
+        {{'SIGNUP.CONCHCK'|translate}}
         </small>
       </div>
 
 
-      <button type="submit" class="btn btn-primary w-100">
+      <button type="submit" class="btn btn-primary w-100" [disabled]="signform.invalid">
         {{'SIGNUP.SUBMIT'|translate}}
       </button>
 
