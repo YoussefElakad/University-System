@@ -15,7 +15,7 @@
           routerLink="/Crs/register"
           routerLinkActive="active-link"
           [routerLinkActiveOptions]="{exact: true}">
-          My Courses
+          {{'HEADER.MYCRS'|translate}}
       </a>
 
       <a *ngIf="role === 'ROLE_STUDENT'"
@@ -23,7 +23,7 @@
           routerLink="/Crs/register"
           routerLinkActive="active-link"
           [routerLinkActiveOptions]="{exact: true}">
-          Register Courses
+          {{'HEADER.REGCRS'|translate}}
       </a>
 
       <a *ngIf="role === 'ROLE_STUDENT'"
@@ -31,7 +31,7 @@
           routerLink="/Grds/Stud"
           routerLinkActive="active-link"
           [routerLinkActiveOptions]="{exact: true}">
-          My Grades
+          {{'HEADER.MYGRD'|translate}}
       </a>
 
       <a *ngIf="role === 'ROLE_ADMIN'"
@@ -39,7 +39,7 @@
           routerLink="/Docs"
           routerLinkActive="active-link"
           [routerLinkActiveOptions]="{exact: true}">
-          Doctors
+          {{'HEADER.DCS'|translate}}
       </a>
 
       <a *ngIf="role === 'ROLE_ADMIN'"
@@ -47,7 +47,7 @@
           routerLink="/Studs"
           routerLinkActive="active-link"
           [routerLinkActiveOptions]="{exact: true}">
-          Students
+          {{'HEADER.STDS'|translate}}
       </a>
 
       <a *ngIf="role === 'ROLE_ADMIN'"
@@ -55,7 +55,7 @@
           routerLink="/Facs"
           routerLinkActive="active-link"
           [routerLinkActiveOptions]="{exact: true}">
-          Faculties
+          {{'HEADER.FCS'|translate}}
       </a>
 
       <a *ngIf="role === 'ROLE_ADMIN'"
@@ -63,7 +63,7 @@
           routerLink="/Crs"
           routerLinkActive="active-link"
           [routerLinkActiveOptions]="{exact: true}">
-          Courses
+          {{'HEADER.CRS'|translate}}
       </a>
 
       <a *ngIf="role === 'ROLE_ADMIN'"
@@ -71,13 +71,13 @@
           routerLink="/Grds"
           routerLinkActive="active-link"
           [routerLinkActiveOptions]="{exact: true}">
-          Grades
+          {{'HEADER.GRDS'|translate}}
       </a>
 
       <button *ngIf="role !== null"
         class="nav-link"
          (click)="logout()">
-        Log Out
+        {{'HEADER.LGOUT'|translate}}
       </button>
 
     </div>

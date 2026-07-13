@@ -7,6 +7,7 @@ import {
   ElementRef,
   AfterViewInit
 } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 declare var bootstrap: any;
 
@@ -16,6 +17,11 @@ declare var bootstrap: any;
 })
 export class ModalComponent implements AfterViewInit {
 
+  constructor(private translate: TranslateService)
+  {
+    translate.use(localStorage.getItem('lang')!);
+  }
+  
   @Input() title = '';
   @Input() message = '';
 

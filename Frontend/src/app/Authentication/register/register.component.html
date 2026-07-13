@@ -2,7 +2,7 @@
 
   <div class="login-card card shadow-lg p-4">
 
-    <h3 class="text-center mb-4">Welcome</h3>
+    <h3 class="text-center mb-4">{{'SIGNUP.WELCOME'|translate}}</h3>
 
     <form (ngSubmit)="Register()">
 
@@ -11,119 +11,129 @@
         [(ngModel)]="register.role"
         class="form-select mb-2"
         name = "role">
-        <option value="" disabled selected>Select Role</option>
+        <option value="" disabled selected>{{'SIGNUP.ROLE'|translate}}</option>
         <option value="STUDENT">
-            Student
+            {{'SIGNUP.S1'|translate}}
         </option>
         <option value = "DOCTOR">
-            Doctor
+            {{'SIGNUP.S2'|translate}}
         </option>
         </select>
       </div>
 
 
       <div class="mb-3" *ngIf="register.role">
-        <label class="form-label">Code</label>
+        <label class="form-label">{{'SIGNUP.CODE'|translate}}</label>
         <input
           type="text"
           [(ngModel)]="register.code"
           name="name"
           class="form-control"
-          placeholder="Insert Your Unique Code"
+          [placeholder]="'SIGNUP.CODEBOX'|translate"
         />
       </div>
 
 
       <div class="mb-3" *ngIf="register.role">
-        <label class="form-label">First Name</label>
+        <label class="form-label">{{'SIGNUP.FNAME'|translate}}</label>
         <input
           type="text"
           [(ngModel)]="register.first_name"
           name="name"
           class="form-control"
-          placeholder="Enter Your First Name"
+          [placeholder]="'SIGNUP.FNAMEBOX'|translate"
         />
       </div>
 
       <div class="mb-3" *ngIf="register.role">
-        <label class="form-label">Last Name</label>
+        <label class="form-label">{{'SIGNUP.LNAME'|translate}}</label>
         <input
           type="text"
           [(ngModel)]="register.last_name"
           name="name"
           class="form-control"
-          placeholder="Enter Your Last Name"
+          [placeholder]="'SIGNUP.LNAMEBOX'|translate"
         />
       </div>
 
       <div class="mb-3" *ngIf="register.role">
-        <label class="form-label">Age</label>
+        <label class="form-label">{{'SIGNUP.AGE'|translate}}</label>
         <input
           type="number"
           [(ngModel)]="register.age"
           name="name"
           class="form-control"
-          placeholder="Enter Your Age"
+          [placeholder]="'SIGNUP.AGEBOX'|translate"
         />
       </div>
 
       <div class="mb-3" *ngIf="register.role">
-        <label class="form-label">Email</label>
+        <label class="form-label">{{'SIGNUP.EM'|translate}}</label>
         <input
           type="text"
           [(ngModel)]="register.email"
           name="name"
           class="form-control"
-          placeholder="Enter Your Email"
+          [placeholder]="'SIGNUP.EMBOX'|translate"
         />
       </div>
 
       <div class="mb-3" *ngIf="register.role">
-        <label class="form-label">Address</label>
+        <label class="form-label">{{'SIGNUP.ADDR'|translate}}</label>
         <input
           type="text"
           [(ngModel)]="register.address"
           name="name"
           class="form-control"
-          placeholder="Enter Your Address"
+          [placeholder]="'SIGNUP.ADDRBOX'|translate"
         />
       </div>
 
       <div class="mb-3" *ngIf="register.role">
-        <label class="form-label">User Name</label>
+        <label class="form-label">{{'SIGNUP.USER'|translate}}</label>
         <input
           type="text"
           [(ngModel)]="register.username"
           name="username"
           class="form-control"
-          placeholder="Enter Your Username"
+          [placeholder]="'SIGNUP.USERBOX'|translate"
         />
       </div>
 
       <div class="mb-3" *ngIf="register.role">
-        <label class="form-label">Password</label>
+        <label class="form-label">{{'SIGNUP.PASSWORD'|translate}}</label>
         <input
           type="password"
           [(ngModel)]="register.password"
           name="password"
           class="form-control"
-          placeholder="Enter password"
+          [placeholder]="'SIGNUP.PASSWORDBOX'|translate"
         />
+        <small
+        class="text-danger"
+        *ngIf="register.password && register.password.length < 8">
+        {{'SIGNUP.PASSCHCK'|translate}}
+        </small>
       </div>
       <div class="mb-3" *ngIf="register.role">
-        <label class="form-label">Confirm Password</label>
+        <label class="form-label">{{'SIGNUP.CONPASS'|translate}}</label>
         <input
           type="password"
           [(ngModel)]="confirmPassword"
           name="password"
           class="form-control"
-          placeholder="Enter password"
+          [placeholder]="'SIGNUP.CONPASSBOX'|translate"
         />
+        <small
+        class="text-danger"
+        *ngIf="confirmPassword && confirmPassword !== register.password">
+        {{'SIGNUP.CONPASSCHCK'|translate}}
+        </small>
       </div>
 
 
       <button type="submit" class="btn btn-primary w-100">
-        Submit
+        {{'SIGNUP.SUBMIT'|translate}}
       </button>
 
     </form>

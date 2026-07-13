@@ -2,34 +2,34 @@
 
   <div class="login-card card shadow-lg p-4">
 
-    <h3 class="text-center mb-4">Welcome Back</h3>
+    <h3 class="text-center mb-4">{{'LOGIN.WELCOME'|translate}}</h3>
 
     <form (ngSubmit)="login()">
 
       <div class="mb-3">
-        <label class="form-label">Username</label>
+        <label class="form-label">{{'LOGIN.USER'|translate}}</label>
         <input
           type="text"
           [(ngModel)]="loginRequest.username"
           name="username"
           class="form-control"
-          placeholder="Enter username"
+          [placeholder]="'LOGIN.USERBOX'|translate"
         />
       </div>
 
       <div class="mb-3">
-        <label class="form-label">Password</label>
+        <label class="form-label">{{'LOGIN.PASSWORD'|translate}}</label>
         <input
           type="password"
           [(ngModel)]="loginRequest.password"
           name="password"
           class="form-control"
-          placeholder="Enter password"
+          [placeholder]="'LOGIN.PASSWORDBOX'|translate"
         />
       </div>
 
       <button type="submit" class="btn btn-primary w-100">
-        Login
+        {{'LOGIN.LOGIN'|translate}}
       </button>
 
     </form>

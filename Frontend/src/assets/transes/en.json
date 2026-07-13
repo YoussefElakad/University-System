@@ -9,12 +9,58 @@
     "ENGLISH": "English"
   },
   "HEADER":{
-    "HOME": "Home"
-
-
+    "HOME": "Home",
+    "MYCRS": "My Courses",
+    "REGCRS": "Register Courses",
+    "MYGRD": "My Grades",
+    "DCS": "Doctors",
+    "STDS": "Students",
+    "FCS": "Faculties",
+    "CRS": "Courses",
+    "GRDS": "Grades",
+    "LGOUT": "Log Out"
   },
   "FOOTER":{
     "LOGGED": "Logged in as User ",
     "NOTLOGGED": "Welcome to Your University"
+  },
+  "MODAL":{
+    "CONF": "CONFIRM",
+    "CLS": "CLOSE"
+  },
+  "LOGIN":{
+    "WELCOME": "Welcome Back",
+    "USER": "Username",
+    "USERBOX": "Enter Username",
+    "PASSWORD": "Password",
+    "PASSWORDBOX": "Enter Password",
+    "LOGIN": "Login"
+  },
+  "SIGNUP":{
+    "WELCOME": "Welcome",
+    "ROLE": "Select Role",
+    "S1": "Student",
+    "S2": "Doctor",
+    "CODE": "Code",
+    "CODEBOX": "Insert Your Unique Code",
+    "FNAME": "First Name",
+    "FNAMEBOX": "Enter Your First Name",
+    "LNAME": "Last Name",
+    "LNAMEBOX": "Enter Your Last Name",
+    "AGE": "Age",
+    "AGEBOX": "Enter Your Age",
+    "EM": "E-Mail",
+    "EMBOX": "Enter Your E-Mail",
+    "ADDR": "Address",
+    "ADDRBOX": "Enter Your Address",
+    "USER": "Username",
+    "USERBOX": "Enter Username",
+    "PASSWORD": "Password",
+    "PASSWORDBOX": "Enter Password",
+    "PASSCHCK": "Passwords must Contain At Least 8 Charecters.",
+    "CONPASS": "Password",
+    "CONPASSBOX": "Enter Password Again",
+    "CONCHCK": "Passwords must match.",
+    "SUBMIT": "Submit"
   }
 }

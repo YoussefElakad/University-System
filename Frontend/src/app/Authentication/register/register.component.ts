@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { RegisterRequest } from 'src/app/shared/models/Authentication/RegisterRequest.model';
 import { Faculty } from 'src/app/shared/models/Faculty/Faculty.model';
@@ -28,7 +29,9 @@ export class RegisterComponent implements OnInit {
   confirmPassword: string = '';
 
   
-  constructor(private api: ApiService,private router: Router,private toaster: ToastrService) { }
+  constructor(private api: ApiService,private router: Router,private toaster: ToastrService,private translate: TranslateService) {
+    translate.use(localStorage.getItem('lang')!);
+   }
 
   faculty!: Faculty[];
   ngOnInit(): void {
@@ -47,7 +50,11 @@ export class RegisterComponent implements OnInit {
       this.toaster.error('Password and Confirm Password Must Match','Error');
       return;
     }
-      
+    if(this.register.password.length < 8)
+    {
+      this.toaster.error('Password is less than 8 Charecters','Error');
+      return;
+    }
 
     this.api.register(this.register)
     .subscribe({
