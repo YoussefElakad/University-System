@@ -1,4 +1,4 @@
-package com.revkov.spring.Auth;
+package com.revkov.spring.Generic;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

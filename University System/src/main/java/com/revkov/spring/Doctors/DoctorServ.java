@@ -1,20 +1,14 @@
 package com.revkov.spring.Doctors;
 
-import com.revkov.spring.Students.StudentDTO;
+import com.revkov.spring.Generic.BaseCRUDServices;
 import com.revkov.spring.Users.UsersRep;
-import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
-@org.springframework.stereotype.Service
-@AllArgsConstructor
-public class DoctorServ
+@Service
+public class DoctorServ extends BaseCRUDServices<Doctor,Long>
 {
     private final DoctorRep repd;
     private final UsersRep repu;
@@ -28,46 +22,27 @@ public class DoctorServ
 
     }
 
+    public DoctorServ(DoctorRep repd, UsersRep repu, DoctorMapper mapper) {
+        super(repd);
+        this.repd = repd;
+        this.repu = repu;
+        this.mapper = mapper;
+    }
 
     public Page<DoctorDTO> ReturnDocs(int page, int size)
     {
-        Pageable pageable = PageRequest.of(
-                page,
-                size,
-                Sort.by("doctorid")
-        );
-
-        return repd.findAll(pageable)
-                .map(mapper::toDTO);
+        return getPages(page,size,"doctorid",mapper::toDTO);
     }
     public DoctorDTO ReturnDocID(Long id) {
-        return repd.findById(id).map(mapper::toDTO).orElse(null);
+        return getByID(id,mapper::toDTO);
     }
     public DoctorDTO ReturnDocUser(String username) {
         return mapper.toDTO(repd.findByUsers(repu.findByUsername(username).orElseThrow(()->new RuntimeException("User Not Found"))).orElseThrow(()->new RuntimeException("User Not a Doctor")));
     }
 
-    public DoctorDTO Insertdoc(DoctorRequestDTO dto)
+    public void Deletedoc(Long id)
     {
-        if (dto.getPhone() == null)
-        {
-            throw new RuntimeException("Enter a valid phone number");
-        }
-        Doctor d = new Doctor(
-                null, dto.getFirst_name(),dto.getLast_name(),
-                dto.getAge(),dto.getEmail()
-                ,dto.getPhone(),dto.getAddress(),null,generatecode());
-
-        repd.save(d);
-        return mapper.toDTO(d);
-    }
-
-    public DoctorDTO Deletedoc(Long id)
-    {
-        Doctor d = repd.findById(id).orElseThrow(()-> new RuntimeException("Doctor Not Found"));
-        repd.deleteById(id);
-
-        return mapper.toDTO(d);
+        deleteEnt(id);
     }
 
     public DoctorDTO Updatedoc(Long id,DoctorRequestDTO dto)
@@ -86,4 +61,18 @@ public class DoctorServ
         return mapper.toDTO(d);
     }
 
+    public DoctorDTO Insertdoc(DoctorRequestDTO dto)
+    {
+        if (dto.getPhone() == null)
+        {
+            throw new RuntimeException("Enter a valid phone number");
+        }
+        Doctor d = new Doctor(
+                null, dto.getFirst_name(),dto.getLast_name(),
+                dto.getAge(),dto.getEmail()
+                ,dto.getPhone(),dto.getAddress(),null,generatecode());
+
+        repd.save(d);
+        return mapper.toDTO(d);
+    }
 }

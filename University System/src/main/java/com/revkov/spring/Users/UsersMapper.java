@@ -13,8 +13,7 @@ public class UsersMapper {
 
         return new UsersDTO(
                 u.getUserid(),
-                u.getUsername(),
-                u.getPassword()
+                u.getUsername()
         );
     }
 
@@ -27,7 +26,6 @@ public class UsersMapper {
 
         u.setUserid(dto.getUserid());
         u.setUsername(dto.getUsername());
-        u.setPassword(dto.getPassword());
         return u;
     }
 }

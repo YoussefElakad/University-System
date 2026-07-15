@@ -1,27 +1,44 @@
 package com.revkov.spring.Faculties;
 
-import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Sort;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.revkov.spring.Generic.BaseCRUDServices;
+import org.springframework.stereotype.Service;
 
-@org.springframework.stereotype.Service
-@AllArgsConstructor
-public class FacultyServ
+import java.util.List;
+
+@Service
+public class FacultyServ extends BaseCRUDServices<Faculty,Long>
 {
     private final FacultyRep repf;
     private final FacultiesMapper mapper;
 
+    public FacultyServ(FacultyRep repf, FacultiesMapper mapper) {
+        super(repf);
+        this.repf = repf;
+        this.mapper = mapper;
+    }
+
     public List<FacultyDTO> ReturnFacs()
     {
-        return repf.findAll(Sort.by("facultyid"))
-                .stream()
-                .map(mapper::toDTOF)
-                .collect(Collectors.toList());
+        return getAll(mapper::toDTOF);
     }
 
     public FacultyDTO ReturnFacID(Long id) {
-        return repf.findById(id).map(mapper::toDTOF).orElse(null);
+        return getByID(id,mapper::toDTOF);
+    }
+
+    public  void Deletefac(Long id)
+    {
+        deleteEnt(id);
+    }
+
+    public FacultyDTO Updatefac(Long id,FacultyRequestDTO dto)
+    {
+
+        Faculty f = new Faculty(id, dto.getFacultyname(), dto.getNumlevels());
+
+        repf.save(f);
+
+        return mapper.toDTOF(f);
     }
 
     public FacultyDTO Insertfac(FacultyRequestDTO dto)
@@ -32,24 +49,6 @@ public class FacultyServ
         Faculty f = new Faculty(null,dto.getFacultyname(),dto.getNumlevels());
 
         repf.save(f);
-        return mapper.toDTOF(f);
-    }
-
-    public  FacultyDTO Deletefac(Long id)
-    {
-        Faculty f = repf.findById(id).orElseThrow(()-> new RuntimeException("Faculty Not Found"));
-        repf.deleteById(id);
-
-        return mapper.toDTOF(f);
-    }
-
-    public FacultyDTO Updatefac(Long id,FacultyRequestDTO dto)
-    {
-
-        Faculty f = new Faculty(id, dto.getFacultyname(), dto.getNumlevels());
-
-        repf.save(f);
-
         return mapper.toDTOF(f);
     }
 }
