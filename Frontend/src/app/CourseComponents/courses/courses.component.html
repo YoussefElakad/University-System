@@ -1,6 +1,6 @@
 <div class="page">
 
-  <h2 class="title">Courses</h2>
+  <h2 class="title">{{'COURSES.TITLE'|translate}}</h2>
 
   <!-- ------------------------------------ -->
 <!-- Filters + Add Button-->
@@ -11,7 +11,7 @@
     <input
       type="text"
       class="form-control student-search"
-      placeholder="Search by Course name..."
+      [placeholder]="'COURSES.SRCH1'|translate"
       [(ngModel)]="courseNameFilter"
       (ngModelChange)="currentPage = 1">
   </div>
@@ -26,7 +26,7 @@
       [(ngModel)]="facultyFilter"
       (ngModelChange)="currentPage = 1">
 
-      <option value="">All Faculties</option>
+      <option value="">{{'COURSES.SRCH2'|translate}}</option>
 
       <option *ngFor="let faculty of faculties"
               [value]="faculty.facultyname">
@@ -63,12 +63,12 @@
       <thead class="table-dark">
         <tr>
           <th>#</th>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Level</th>
-          <th>Faculty Name</th>
-          <th>Doctor</th>
-          <th>Action</th>
+          <th>{{'TABLE.CODE'|translate}}</th>
+          <th>{{'TABLE.NAME'|translate}}</th>
+          <th>{{'COURSES.LEVEL'|translate}}</th>
+          <th>{{'COURSES.FACNAME'|translate}}</th>
+          <th>{{'COURSES.DOCTOR'|translate}}</th>
+          <th>{{'TABLE.ACTION'|translate}}</th>
         </tr>
       </thead>
 

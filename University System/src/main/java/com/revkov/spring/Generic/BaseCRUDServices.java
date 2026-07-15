@@ -13,7 +13,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
-public class BaseCRUDServices<T,ID> {
+public abstract class BaseCRUDServices<T,ID> {
 
     private final JpaRepository<T,ID> genrepo;
 

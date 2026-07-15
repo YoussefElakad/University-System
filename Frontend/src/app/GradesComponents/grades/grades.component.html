@@ -1,6 +1,6 @@
 <div class="page">
 
-  <h2 class="title">Grades</h2>
+  <h2 class="title">{{'GRADES.TITLE'|translate}}</h2>
 
   <!-- ------------------------------------ -->
 <!-- Filters + Add Button-->
@@ -11,7 +11,7 @@
     <input
       type="text"
       class="form-control student-search"
-      placeholder="Search by student name..."
+      [placeholder]="'GRADES.SRCH1'|translate"
       [(ngModel)]="studentNameFilter"
       (ngModelChange)="currentPage = 1">
   </div>
@@ -27,7 +27,7 @@
       [(ngModel)]="facultyFilter"
       (ngModelChange)="currentPage = 1">
 
-      <option value="All Faculties">All Faculties</option>
+      <option value="All Faculties">{{'GRADES.SRCH2'|translate}}</option>
 
       <option *ngFor="let f of faculty"
               [value]="f.facultyname">
@@ -50,7 +50,7 @@
       (ngModelChange)="currentPage = 1"
       >
 
-      <option value="All Levels">All Levels</option>
+      <option value="All Levels">{{'GRADES.SRCH3'|translate}}</option>
 
       <option *ngFor="let l of levelfilt" [value]="l">
         {{ l }}
@@ -70,7 +70,7 @@
       [(ngModel)]="coursesFilter"
       (ngModelChange)="currentPage = 1">
 
-      <option value="All Courses">All Courses</option>
+      <option value="All Courses">{{'GRADES.SRCH4'|translate}}</option>
 
       <option *ngFor="let c of coursesfilt" [value]="c">
         {{ c }}
@@ -105,13 +105,13 @@
       <thead class="table-dark">
         <tr>
           <th>#</th>
-          <th>GradeID</th>
-          <th>Student Name</th>
-          <th>Course Name</th>
-          <th>Final Grade</th>
-          <th>Faculty Name</th>
-          <th>Level</th>
-          <th>Action</th>
+          <th>{{'TABLE.CODE'|translate}}</th>
+          <th>{{'GRADES.STUNAME'|translate}}</th>
+          <th>{{'GRADES.CRSNAME'|translate}}</th>
+          <th>{{'GRADES.GRADE'|translate}}</th>
+          <th>{{'GRADES.FACNAME'|translate}}</th>
+          <th>{{'GRADES.LEVEL'|translate}}</th>
+          <th>{{'TABLE.ACTION'|translate}}</th>
         </tr>
       </thead>
 

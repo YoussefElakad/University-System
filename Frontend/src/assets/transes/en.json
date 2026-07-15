@@ -84,5 +84,25 @@
     "TITLE": "Faculty",
     "NUMLEVS": "Number Of Levels",
     "SRCH": "Search By Faculty Name"
+  },
+  "COURSES":{
+    "TITLE": "Courses",
+    "FACNAME": "Faculty Name",
+    "LEVEL": "Level",
+    "DOCTOR": "Doctor",
+    "SRCH1": "Search By Course Name",
+    "SRCH2": "All Faculties"
+  },
+  "GRADES":{
+    "TITLE": "Grades",
+    "STUNAME": "Student Name",
+    "CRSNAME": "Course Name",
+    "GRADE": "Final Grade",
+    "FACNAME": "Faculty Name",
+    "LEVEL": "Level",
+    "SRCH1": "Search By Student Name",
+    "SRCH2": "All Faculties",
+    "SRCH3": "All Levels",
+    "SRCH4": "All Courses"
   }
 }
